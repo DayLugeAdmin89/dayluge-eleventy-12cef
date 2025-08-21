@@ -1,70 +1,56 @@
-<!DOCTYPE html>
-<html>
-<head>
-  <meta charset="UTF-8">
-  <title>The Day Luge</title>
-  <style>
-    body {
-      font-family: Courier, monospace;
-      text-align: center;
-      margin: 40px;
-    }
-    h1 {
-      font-size: 36px;
-      margin-bottom: 30px;
-      text-transform: uppercase;
-    }
-    .columns {
-      display: flex;
-      justify-content: space-between;
-      max-width: 1200px;
-      margin: auto;
-    }
-    .column {
-      width: 30%;
-      text-align: left;
-    }
-    a {
-      display: block;
-      margin: 10px 0;
-      text-decoration: none;
-      font-size: 14px;
-    }
-    /* Color categories */
-    .red { color: red; }
-    .orange { color: orange; }
-    .yellow { color: goldenrod; }
-    .green { color: green; }
-    .blue { color: blue; }
-    .purple { color: purple; }
-    .pink { color: hotpink; }
-  </style>
-</head>
-<body>
-  <h1>THE DAYLUGE</h1>
-  <hr>
+---
+layout: layouts/base.njk
+---
 
-  <div class="columns">
-    <!-- Column 1 -->
-    <div class="column">
-      <a href="https://example.com" class="red">Red placeholder link</a>
-      <a href="https://example.com" class="orange">Orange placeholder link</a>
-      <a href="https://example.com" class="blue">Blue placeholder link</a>
-    </div>
+<style>
+  .columns { display: flex; justify-content: space-between; max-width: 1200px; margin: 0 auto; gap: 24px; }
+  .column { width: 33.333%; text-align: left; }
+  a.link { display: block; margin: 8px 0; text-decoration: none; font-size: 14px; }
+  a.link:hover { text-decoration: underline; }
+  .red { color: #c01414; }
+  .orange { color: #ff8c00; }
+  .yellow { color: #c9a400; }
+  .green { color: #1a7a1a; }
+  .blue { color: #0a47ff; }
+  .indigo { color: #4b0082; }
+  .violet { color: #8f00ff; }
+  @media (max-width: 900px) { .columns { flex-direction: column; } .column { width: 100%; } }
+</style>
 
-    <!-- Column 2 -->
-    <div class="column">
-      <a href="https://example.com" class="green">Green placeholder link</a>
-      <a href="https://example.com" class="purple">Purple placeholder link</a>
-      <a href="https://example.com" class="orange">Orange placeholder link</a>
-    </div>
+{% set latest = links.items | slice(0, 72) %}
+{% set col1 = [] %}
+{% set col2 = [] %}
+{% set col3 = [] %}
 
-    <!-- Column 3 -->
-    <div class="column">
-      <a href="https://example.com" class="yellow">Yellow placeholder link</a>
-      <a href="https://example.com" class="red">Red placeholder link</a>
-      <a href="https://example.com" class="pink">Pink placeholder link</a>
-    </div>
+{# Distribute links round-robin into three columns #}
+{% for item in latest %}
+  {% if loop.index0 % 3 == 0 %}
+    {% set col1 = col1.concat([item]) %}
+  {% elseif loop.index0 % 3 == 1 %}
+    {% set col2 = col2.concat([item]) %}
+  {% else %}
+    {% set col3 = col3.concat([item]) %}
+  {% endif %}
+{% endfor %}
+
+<div class="columns">
+  <div class="column">
+    {% for item in col1 %}
+      <a class="link {{ item.className }}" href="{{ item.url }}" target="_blank" rel="noopener">{{ item.text }}</a>
+    {% endfor %}
   </div>
-</body>
-</html>
+  <div class="column">
+    {% for item in col2 %}
+      <a class="link {{ item.className }}" href="{{ item.url }}" target="_blank" rel="noopener">{{ item.text }}</a>
+    {% endfor %}
+  </div>
+  <div class="column">
+    {% for item in col3 %}
+      <a class="link {{ item.className }}" href="{{ item.url }}" target="_blank" rel="noopener">{{ item.text }}</a>
+    {% endfor %}
+  </div>
+</div>
+
+<div style="text-align:center;margin-top:18px;">
+  <a href="/archive/" style="text-decoration:none;">Archive</a>
+</div>
