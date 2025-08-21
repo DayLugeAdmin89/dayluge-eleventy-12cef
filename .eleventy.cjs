@@ -1,11 +1,16 @@
 module.exports = function(eleventyConfig) {
-  // Add a collection for link files in /links/
+  // Collection: all link markdown files in /links/
   eleventyConfig.addCollection("link", function(collectionApi) {
     return collectionApi.getFilteredByGlob("links/*.md");
   });
 
-  // Copy CSS to output
+  // Pass through CSS
   eleventyConfig.addPassthroughCopy("css");
+
+  // Filter needed by sitemap.xml.njk
+  eleventyConfig.addFilter("htmlBaseUrl", function (url) {
+    return "https://thedayluge.com" + (url || "");
+  });
 
   return {
     dir: {
