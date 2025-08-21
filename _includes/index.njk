@@ -1,56 +1,59 @@
 ---
 layout: layouts/base.njk
+title: THE DAYLUGE
 ---
 
-<style>
-  .columns { display: flex; justify-content: space-between; max-width: 1200px; margin: 0 auto; gap: 24px; }
-  .column { width: 33.333%; text-align: left; }
-  a.link { display: block; margin: 8px 0; text-decoration: none; font-size: 14px; }
-  a.link:hover { text-decoration: underline; }
-  .red { color: #c01414; }
-  .orange { color: #ff8c00; }
-  .yellow { color: #c9a400; }
-  .green { color: #1a7a1a; }
-  .blue { color: #0a47ff; }
-  .indigo { color: #4b0082; }
-  .violet { color: #8f00ff; }
-  @media (max-width: 900px) { .columns { flex-direction: column; } .column { width: 100%; } }
-</style>
+<div class="site-wrap">
+  <h1 class="site-title">THE DAYLUGE</h1>
+  <hr class="rule" />
 
-{% set latest = links.items | slice(0, 72) %}
-{% set col1 = [] %}
-{% set col2 = [] %}
-{% set col3 = [] %}
+  {% set items = collections.link | reverse %}
 
-{# Distribute links round-robin into three columns #}
-{% for item in latest %}
-  {% if loop.index0 % 3 == 0 %}
-    {% set col1 = col1.concat([item]) %}
-  {% elseif loop.index0 % 3 == 1 %}
-    {% set col2 = col2.concat([item]) %}
-  {% else %}
-    {% set col3 = col3.concat([item]) %}
-  {% endif %}
-{% endfor %}
+  <div class="grid">
 
-<div class="columns">
-  <div class="column">
-    {% for item in col1 %}
-      <a class="link {{ item.className }}" href="{{ item.url }}" target="_blank" rel="noopener">{{ item.text }}</a>
-    {% endfor %}
+    <!-- Column 1: items 0–23 -->
+    <div class="col"><ul>
+      {% for item in items %}
+        {% if loop.index0 < 24 %}
+          <li>
+            <a class="link {{ item.data.color | safe }}"
+               href="{{ item.data.url }}" target="_blank" rel="noopener">
+              {{ item.data.title }}
+            </a>
+          </li>
+        {% endif %}
+      {% endfor %}
+    </ul></div>
+
+    <!-- Column 2: items 24–47 -->
+    <div class="col"><ul>
+      {% for item in items %}
+        {% if loop.index0 >= 24 and loop.index0 < 48 %}
+          <li>
+            <a class="link {{ item.data.color | safe }}"
+               href="{{ item.data.url }}" target="_blank" rel="noopener">
+              {{ item.data.title }}
+            </a>
+          </li>
+        {% endif %}
+      {% endfor %}
+    </ul></div>
+
+    <!-- Column 3: items 48–71 -->
+    <div class="col"><ul>
+      {% for item in items %}
+        {% if loop.index0 >= 48 and loop.index0 < 72 %}
+          <li>
+            <a class="link {{ item.data.color | safe }}"
+               href="{{ item.data.url }}" target="_blank" rel="noopener">
+              {{ item.data.title }}
+            </a>
+          </li>
+        {% endif %}
+      {% endfor %}
+    </ul></div>
+
   </div>
-  <div class="column">
-    {% for item in col2 %}
-      <a class="link {{ item.className }}" href="{{ item.url }}" target="_blank" rel="noopener">{{ item.text }}</a>
-    {% endfor %}
-  </div>
-  <div class="column">
-    {% for item in col3 %}
-      <a class="link {{ item.className }}" href="{{ item.url }}" target="_blank" rel="noopener">{{ item.text }}</a>
-    {% endfor %}
-  </div>
-</div>
 
-<div style="text-align:center;margin-top:18px;">
-  <a href="/archive/" style="text-decoration:none;">Archive</a>
+  <p class="more"><a href="/archive/">More →</a></p>
 </div>
