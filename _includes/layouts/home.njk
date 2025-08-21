@@ -1,6 +1,8 @@
-{% extends "layouts/base.njk" %}
+---
+layout: layouts/base.njk
+title: THE DAYLUGE
+---
 
-{% block content %}
 <div class="site-wrap">
   <h1 class="site-title">THE DAYLUGE</h1>
   <hr class="rule" />
@@ -8,6 +10,7 @@
   {% set items = collections.link | reverse %}
 
   <div class="grid">
+
     <!-- Column 1: items 0–23 -->
     <div class="col"><ul>
       {% for item in items %}
@@ -49,8 +52,8 @@
         {% endif %}
       {% endfor %}
     </ul></div>
+
   </div>
 
   <p class="more"><a href="/archive/">More →</a></p>
 </div>
-{% endblock %}
