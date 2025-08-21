@@ -7,9 +7,11 @@ module.exports = function(eleventyConfig) {
   // Pass through CSS
   eleventyConfig.addPassthroughCopy("css");
 
-  // Filter needed by sitemap.xml.njk
-  eleventyConfig.addFilter("htmlBaseUrl", function (url) {
-    return "https://thedayluge.com" + (url || "");
+  // Filter required by content/sitemap.xml.njk
+  // Simple passthrough: returns the URL unchanged
+  // (If you later need absolute URLs, change to prepend "https://thedayluge.com")
+  eleventyConfig.addFilter("htmlBaseUrl", function(url) {
+    return url || "";
   });
 
   return {
@@ -21,3 +23,4 @@ module.exports = function(eleventyConfig) {
     }
   };
 };
+
