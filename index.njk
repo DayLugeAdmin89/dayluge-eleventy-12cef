@@ -1,0 +1,59 @@
+---
+layout: layouts/base.njk
+title: THE DAYLUGE
+---
+
+<div class="site-wrap">
+  <h1 class="site-title">THE DAYLUGE</h1>
+  <hr class="rule" />
+
+  {% set items = collections.link | reverse %}
+
+  <div class="grid">
+
+    <!-- Column 1: items 0–23 -->
+    <div class="col"><ul>
+      {% for item in items %}
+        {% if loop.index0 < 24 %}
+          <li>
+            <a class="link {{ item.data.color | safe }}"
+               href="{{ item.data.url }}" target="_blank" rel="noopener">
+              {{ item.data.title }}
+            </a>
+          </li>
+        {% endif %}
+      {% endfor %}
+    </ul></div>
+
+    <!-- Column 2: items 24–47 -->
+    <div class="col"><ul>
+      {% for item in items %}
+        {% if loop.index0 >= 24 and loop.index0 < 48 %}
+          <li>
+            <a class="link {{ item.data.color | safe }}"
+               href="{{ item.data.url }}" target="_blank" rel="noopener">
+              {{ item.data.title }}
+            </a>
+          </li>
+        {% endif %}
+      {% endfor %}
+    </ul></div>
+
+    <!-- Column 3: items 48–71 -->
+    <div class="col"><ul>
+      {% for item in items %}
+        {% if loop.index0 >= 48 and loop.index0 < 72 %}
+          <li>
+            <a class="link {{ item.data.color | safe }}"
+               href="{{ item.data.url }}" target="_blank" rel="noopener">
+              {{ item.data.title }}
+            </a>
+          </li>
+        {% endif %}
+      {% endfor %}
+    </ul></div>
+
+  </div>
+
+  <p class="more"><a href="/archive/">More →</a></p>
+</div>
