@@ -1,10 +1,70 @@
----
-layout: layouts/base.njk
----
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>The Day Luge</title>
+  <style>
+    body {
+      font-family: Courier, monospace;
+      text-align: center;
+      margin: 40px;
+    }
+    h1 {
+      font-size: 36px;
+      margin-bottom: 30px;
+      text-transform: uppercase;
+    }
+    .columns {
+      display: flex;
+      justify-content: space-between;
+      max-width: 1200px;
+      margin: auto;
+    }
+    .column {
+      width: 30%;
+      text-align: left;
+    }
+    a {
+      display: block;
+      margin: 10px 0;
+      text-decoration: none;
+      font-size: 14px;
+    }
+    /* Color categories */
+    .red { color: red; }
+    .orange { color: orange; }
+    .yellow { color: goldenrod; }
+    .green { color: green; }
+    .blue { color: blue; }
+    .purple { color: purple; }
+    .pink { color: hotpink; }
+  </style>
+</head>
+<body>
+  <h1>THE DAYLUGE</h1>
+  <hr>
 
-<a href="https://www.zerohedge.com" class="news">NOAA issues La Niña Watch — ZeroHedge</a>
-<a href="https://www.libsoftiktok.com" class="editorial">Libs of TikTok Post</a>
-<a href="https://www.espn.com" class="sports">ESPN Headline</a>
-<a href="https://www.nationalgeographic.com" class="culture">Travel / Culture / Arts</a>
-<a href="https://www.nature.com" class="longform">Science / Health Longform</a>
-<a href="https://theonion.com" class="funny">Funny / Satire</a>
+  <div class="columns">
+    <!-- Column 1 -->
+    <div class="column">
+      <a href="https://example.com" class="red">Red placeholder link</a>
+      <a href="https://example.com" class="orange">Orange placeholder link</a>
+      <a href="https://example.com" class="blue">Blue placeholder link</a>
+    </div>
+
+    <!-- Column 2 -->
+    <div class="column">
+      <a href="https://example.com" class="green">Green placeholder link</a>
+      <a href="https://example.com" class="purple">Purple placeholder link</a>
+      <a href="https://example.com" class="orange">Orange placeholder link</a>
+    </div>
+
+    <!-- Column 3 -->
+    <div class="column">
+      <a href="https://example.com" class="yellow">Yellow placeholder link</a>
+      <a href="https://example.com" class="red">Red placeholder link</a>
+      <a href="https://example.com" class="pink">Pink placeholder link</a>
+    </div>
+  </div>
+</body>
+</html>
