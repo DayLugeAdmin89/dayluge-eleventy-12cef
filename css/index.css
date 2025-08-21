@@ -295,4 +295,23 @@ header {
 .post-metadata time {
 	margin-right: 1em;
 }
+/* Minimalist Courier styling */
+body {
+  font-family: Courier, monospace;
+  font-size: 12pt;
+  background: white;
+  color: black;
+  line-height: 1.6;
+  margin: 40px;
+}
+
+a {
+  font-family: Courier, monospace;
+  font-size: 13pt;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
 
